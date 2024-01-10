@@ -11,42 +11,37 @@ void turnOffLED();
 void displayEnvironmentalData();
 void printEnvironmentalData();
 
-// 定义引脚
 #define MOTOR_PIN A0
 #define LED_PIN A2
 
-// 初始化传感器
 Adafruit_MPU6050 mpu;
 Adafruit_BME280 bme;
 Adafruit_SSD1306 display(128, 64, &Wire);
 
 void setup() {
   Serial.begin(9600);
-  while(!Serial);    // 等待串行端口初始化
+  while(!Serial);   
   Serial.println("Init");
 
-  // 初始化MPU6050
   if (!mpu.begin()) {
-    Serial.println("MPU6050未找到");
+    Serial.println("MPU6050 not found");
     while (1);
   }
 
-  // 初始化BME280
   if (!bme.begin(0x76)) {
-    Serial.println("BME280未找到");
+    Serial.println("BME280 not found");
     while (1);
   }
 
-  // 初始化OLED显示
   if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
-    Serial.println("SSD1306 OLED未找到");
+    Serial.println("SSD1306 OLED not found");
     while (1);
   }
 
   pinMode(LED_PIN, OUTPUT);
   pinMode(MOTOR_PIN, OUTPUT);
 
-  display.display(); // 显示Adafruit logo
+  display.display(); 
   delay(2000);
   display.clearDisplay();
 }
@@ -55,22 +50,19 @@ void loop() {
   sensors_event_t a, g, temp;
   mpu.getEvent(&a, &g, &temp);
 
-  // 检测非Z轴方向的运动
   if (abs(a.acceleration.x) > 10 || abs(a.acceleration.y) > 10) {
-    int diceRoll = random(1, 7); // 生成1到6的随机数
-    blinkLEDAndVibrate(diceRoll); // 控制LED和马达
-    displayDiceRoll(diceRoll, a);    // 显示点数
+    int diceRoll = random(1, 7); 
+    blinkLEDAndVibrate(diceRoll); 
+    displayDiceRoll(diceRoll, a);    
   } 
-  // 检测Z轴方向的运动
   else if (abs(a.acceleration.z - 9) > 10) {
     turnOffLED();
-    displayEnvironmentalData(); // 显示环境数据
+    displayEnvironmentalData(); 
   } else {
-    // 在每次循环中打印环境数据
     printEnvironmentalData();
   }
 
-  delay(100); // 延时以避免过快的响应
+  delay(100); 
 }
 
 void blinkLEDAndVibrate(int number) {
