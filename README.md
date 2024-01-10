@@ -1,6 +1,6 @@
 # PlatformIO-Lab
 
-# Wearable Device Project
+# #Wearable Device Project
 
 ## Introduction
 This repository contains the source code for a wearable device project developed using PlatformIO. Utilizing the MPU6050 sensor, the device detects wrist movements to generate random dice rolls. This project is built using Adafruit QT Py SAMD21, MPU6050, BME280, SSD1306 OLED, a linear vibration actuator, and a blue LED.
