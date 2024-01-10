@@ -1,24 +1,28 @@
 # PlatformIO-Lab
+
 # Wearable Device Project
 
 ## Introduction
-This repository contains the source code for a wearable device project developed using PlatformIO. The project includes functionality for sensor data processing and display output on an OLED screen.
+This repository contains the source code for a wearable device project developed using PlatformIO. Utilizing the MPU6050 sensor, the device detects wrist movements to generate random dice rolls. This project is built using Adafruit QT Py SAMD21, MPU6050, BME280, SSD1306 OLED, a linear vibration actuator, and a blue LED.
 
 ## Features
-- Sensor data processing with Adafruit MPU6050 and BME280 sensors.
-- Display output on Adafruit SSD1306 OLED.
-- Customizable LED and motor control for notifications or alerts.
+- Dice Roll Simulation: Detects wrist movements to generate a random number (1-6), using MPU6050.
+- Feedback Mechanisms: 
+  - Visual: Blue LED blinks according to the dice number.
+  - Tactile: Linear vibration actuator vibrates corresponding to the dice number.
+- Environmental Data Display: When the wrist is stationary, the SSD1306 OLED displays environmental data (temperature, humidity, and pressure) from the BME280 sensor.
+- Wearable Design: Configured as a wristband for easy and practical use.
 
 ## Hardware Requirements
-- Microcontroller compatible with Adafruit MPU6050, BME280, and SSD1306 (e.g., Seeeduino XIAO, Arduino, etc.)
-- Adafruit MPU6050 sensor
-- Adafruit BME280 sensor
-- Adafruit SSD1306 OLED display
-- Additional components like LEDs, motor, resistors, etc.
+- Adafruit QT Py SAMD21
+- MPU6050 sensor
+- BME280 sensor
+- SSD1306 OLED display
+- Linear Vibration Actuator
+- 1 Blue LED
+- Appropriate resistors and wiring
+- Wristband casing for wearable format
 
 ## Software Requirements
-- PlatformIO IDE
-- Necessary libraries (listed in `platformio.ini`)
-
-- Adafruit for sensor and display libraries.
-- PlatformIO team for the amazing IDE and platform.
+- PlatformIO IDE or Arduino IDE
+- Necessary libraries for MPU6050, BME280, SSD1306, etc.
